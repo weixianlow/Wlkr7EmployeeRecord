@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
  *
  * @author weixianlow
  */
-public abstract class Wlkr7Employee implements BasicTraining{
+public abstract class Wlkr7Employee {
     
     private String firstName;
     private String lastName;
@@ -20,6 +20,14 @@ public abstract class Wlkr7Employee implements BasicTraining{
     private String phoneNumber;
     private SimpleDateFormat dateJoined;
     private String employeeID;
+    private Boolean morts;
+    private Boolean doMundos;
+    private Boolean infusion;
+    private Boolean kateAndEmmas;
+    private Boolean pomodoros;
+    private Boolean foodTraining;
+    private Boolean cashManagementTraining;
+    private Boolean healthCode;
     
     
     public Wlkr7Employee(String firstName, String lastName, SimpleDateFormat birthdate, String address,String phoneNumber, SimpleDateFormat dateJoined, String employeeID)
@@ -90,6 +98,89 @@ public abstract class Wlkr7Employee implements BasicTraining{
     {
         return employeeID;
     }
+    
+    public void setMorts(Boolean response)
+    {
+        morts = response;
+    }
+   
+    
+    public Boolean getMorts()
+    {
+        return morts;
+    }
+    
+    public void setDoMundos(Boolean response)
+    {
+        doMundos = response;
+    }
+    
+    public Boolean getDoMundos()
+    {
+        return doMundos;
+    }
+    
+    public void setInfusion(Boolean response)
+    {
+        infusion = response;
+    }
+    
+    public Boolean getInfusion()
+    {
+        return infusion;
+    }
+    
+    public void setPomodoros(Boolean response)
+    {
+        pomodoros = response; 
+    }
+    
+    public Boolean getPomodoros()
+    {
+        return pomodoros;
+    }
+    
+    public void setKateAndEmmas(Boolean response)
+    {
+        kateAndEmmas = response;
+    }
+    
+    public Boolean getKateAndEmmas(Boolean response)
+    {
+        return kateAndEmmas;
+    }
+    
+    public void setFoodTraining(Boolean response)
+    {
+        foodTraining = response;
+    }
+    
+    public Boolean getFoodTraining()
+    {
+        return foodTraining;
+    }
+    
+    public void setCashManagementTraining(Boolean response)
+    {
+        cashManagementTraining = response;
+    }
+    
+    public Boolean getCashManagementTraining()
+    {
+        return cashManagementTraining;
+    }
+    
+    public void setHealthCode(Boolean response)
+    {
+        healthCode = response;
+    }
+    
+    public Boolean getHealthCode()
+    {
+        return healthCode;
+    }
+    
+    
 
     
     

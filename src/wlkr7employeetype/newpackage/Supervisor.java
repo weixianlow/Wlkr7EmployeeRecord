@@ -9,11 +9,10 @@ package wlkr7employeetype.newpackage;
  *
  * @author weixianlow
  */
-public interface BasicTraining {
-    
-    public boolean foodTrainingReceived();
-    public boolean cashManagementTrainingReceived();
-    public boolean healthCodeMet();
-    
+public interface Supervisor {
+    public void setSupervisorTraining(Boolean response);
+    public Boolean getSupervisorTraining();
+    public void setCrisisManagementTraining(Boolean response);
+    public Boolean getCrisisManagementTraining(Boolean response);
     
 }
