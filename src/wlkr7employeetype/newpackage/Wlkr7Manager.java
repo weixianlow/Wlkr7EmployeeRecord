@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
  *
  * @author weixianlow
  */
-public class Wlkr7Manager extends Wlkr7Employee implements Manager {
+public class Wlkr7Manager extends Wlkr7BasicInfo implements Manager {
     
     private Boolean managerTraining;
     private Boolean crisisManagementTraining;
