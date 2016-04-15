@@ -47,13 +47,13 @@
          <children>
             <Label text="First Name:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <Label text="Last Name:" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <DatePicker GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <TextField fx:id="firstName" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <TextField fx:id="lastName" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <DatePicker fx:id="birthDate" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="3" />
             <Label text="Birthdate:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
             <Label alignment="CENTER" text="Address: " GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2" />
             <Label text="Employee ID:" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="3" />
+            <TextArea fx:id="address" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="3" />
             <Label text="Phone Number:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9" />
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: Solid;" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="4" GridPane.rowSpan="4">
                <children>
@@ -62,34 +62,34 @@
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </Label>
-                  <CheckBox mnemonicParsing="false" text="Morts">
+                  <CheckBox fx:id="morts" mnemonicParsing="false" text="Morts">
                      <padding>
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Domundos">
+                  <CheckBox fx:id="doMundos" mnemonicParsing="false" text="Domundos">
                      <padding>
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Pomodoros">
+                  <CheckBox fx:id="pomodoros" mnemonicParsing="false" text="Pomodoros">
                      <padding>
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Kate &amp; Emma's">
+                  <CheckBox fx:id="kateAndEmmas" mnemonicParsing="false" text="Kate &amp; Emma's">
                      <padding>
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Infusions">
+                  <CheckBox fx:id="infusions" mnemonicParsing="false" text="Infusions">
                      <padding>
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </CheckBox>
                </children>
             </VBox>
-            <TextField GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+            <TextField fx:id="phoneNumber" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="9" />
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: Solid;" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="9" GridPane.rowSpan="3">
                <children>
                   <Label text="Training">
@@ -97,28 +97,28 @@
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </Label>
-                  <CheckBox mnemonicParsing="false" text="Food Safety Training">
+                  <CheckBox fx:id="foodSafetyTraining" mnemonicParsing="false" text="Food Safety Training">
                      <padding>
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Cash Management Training">
+                  <CheckBox fx:id="cashManagementTraining" mnemonicParsing="false" text="Cash Management Training">
                      <padding>
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Health Code Training">
+                  <CheckBox fx:id="healthCodeTraining" mnemonicParsing="false" text="Health Code Training">
                      <padding>
                         <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                      </padding>
                   </CheckBox>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Cancel" GridPane.columnIndex="7" GridPane.rowIndex="13" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" text="Done" GridPane.columnIndex="8" GridPane.rowIndex="13" />
+            <Button fx:id="cancel" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Cancel" GridPane.columnIndex="7" GridPane.rowIndex="13" />
+            <Button fx:id="done" mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" text="Done" GridPane.columnIndex="8" GridPane.rowIndex="13" />
             <Label text="Date Started:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-            <DatePicker GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-            <TextField prefHeight="27.0" prefWidth="170.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <DatePicker fx:id="dateStarted" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+            <TextField fx:id="employeeID" prefHeight="27.0" prefWidth="170.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>

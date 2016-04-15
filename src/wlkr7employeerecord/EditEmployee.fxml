@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="464.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="wlkr7employeerecord.EditEmployeeController">
+<AnchorPane id="AnchorPane" prefHeight="464.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wlkr7employeerecord.EditEmployeeController">
     <stylesheets>
         <URL value="@editemployee.css" />
     </stylesheets>
@@ -19,27 +19,27 @@
       <Label layoutX="35.0" layoutY="99.0" text="Address:" />
       <Label layoutX="300.0" layoutY="108.0" text="Phone Number:" />
       <Label layoutX="301.0" layoutY="147.0" text="Date Joined:" />
-      <TextField layoutX="121.0" layoutY="30.0" />
-      <TextField layoutX="404.0" layoutY="30.0" />
-      <TextField layoutX="121.0" layoutY="65.0" />
-      <TextField layoutX="404.0" layoutY="65.0" />
-      <TextArea layoutX="121.0" layoutY="100.0" prefHeight="111.0" prefWidth="167.0" />
-      <TextField layoutX="404.0" layoutY="103.0" />
-      <TextField layoutX="404.0" layoutY="142.0" />
+      <TextField fx:id="firstName" layoutX="121.0" layoutY="30.0" />
+      <TextField fx:id="lastName" layoutX="404.0" layoutY="30.0" />
+      <TextField fx:id="birthDate" layoutX="121.0" layoutY="65.0" />
+      <TextField fx:id="employeeID" layoutX="404.0" layoutY="65.0" />
+      <TextArea fx:id="address" layoutX="121.0" layoutY="100.0" prefHeight="111.0" prefWidth="167.0" />
+      <TextField fx:id="phoneNumber" layoutX="404.0" layoutY="103.0" />
+      <TextField fx:id="dateStarted" layoutX="404.0" layoutY="142.0" />
       <Label layoutX="35.0" layoutY="230.0" text="Training:" />
       <Label layoutX="35.0" layoutY="258.0" text="Employee:" />
       <Label layoutX="243.0" layoutY="258.0" text="Supervisor:" />
       <Label layoutX="426.0" layoutY="258.0" text="Manager:" />
-      <CheckBox layoutX="35.0" layoutY="282.0" mnemonicParsing="false" text="Food Training" />
-      <CheckBox layoutX="35.0" layoutY="308.0" mnemonicParsing="false" text="Cash Management" />
-      <CheckBox layoutX="35.0" layoutY="333.0" mnemonicParsing="false" text="Health Code Training" />
-      <CheckBox layoutX="245.0" layoutY="282.0" mnemonicParsing="false" text="Supervisor Training" />
-      <CheckBox layoutX="245.0" layoutY="308.0" mnemonicParsing="false" text="Crisis Management" />
-      <CheckBox layoutX="426.0" layoutY="282.0" mnemonicParsing="false" text="Manager Training" />
-      <CheckBox layoutX="426.0" layoutY="308.0" mnemonicParsing="false" text="Crisis Management" />
-      <CheckBox layoutX="426.0" layoutY="333.0" mnemonicParsing="false" text="Safe Deposit Training" />
-      <CheckBox layoutX="426.0" layoutY="357.0" mnemonicParsing="false" text="Scheduling Training" />
-      <Button layoutX="401.0" layoutY="410.0" mnemonicParsing="false" text="Done" />
-      <Button layoutX="463.0" layoutY="410.0" mnemonicParsing="false" text="Cancel" />
+      <CheckBox fx:id="foodSafetyTraining" layoutX="35.0" layoutY="282.0" mnemonicParsing="false" text="Food Training" />
+      <CheckBox fx:id="cashManagementTraining" layoutX="35.0" layoutY="308.0" mnemonicParsing="false" text="Cash Management" />
+      <CheckBox fx:id="healthCodeTraining" layoutX="35.0" layoutY="333.0" mnemonicParsing="false" text="Health Code Training" />
+      <CheckBox fx:id="supervisorTraining" layoutX="245.0" layoutY="282.0" mnemonicParsing="false" text="Supervisor Training" />
+      <CheckBox fx:id="crisisManagement" layoutX="245.0" layoutY="308.0" mnemonicParsing="false" text="Crisis Management" />
+      <CheckBox fx:id="managerTraining" layoutX="426.0" layoutY="282.0" mnemonicParsing="false" text="Manager Training" />
+      <CheckBox fx:id="crisisManagement2" layoutX="426.0" layoutY="308.0" mnemonicParsing="false" text="Crisis Management" />
+      <CheckBox fx:id="safeDepositTraining" layoutX="426.0" layoutY="333.0" mnemonicParsing="false" text="Safe Deposit Training" />
+      <CheckBox fx:id="schedulingTraining" layoutX="426.0" layoutY="357.0" mnemonicParsing="false" text="Scheduling Training" />
+      <Button fx:id="done" layoutX="401.0" layoutY="410.0" mnemonicParsing="false" text="Done" />
+      <Button fx:id="cancel" layoutX="463.0" layoutY="410.0" mnemonicParsing="false" text="Cancel" />
    </children>
 </AnchorPane>

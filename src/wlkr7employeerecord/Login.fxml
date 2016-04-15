@@ -14,12 +14,12 @@
     </stylesheets>
    <children>
       <Label layoutX="57.0" layoutY="74.0" text="Username:" />
-      <TextField layoutX="149.0" layoutY="69.0" />
+      <TextField fx:id="userName" layoutX="149.0" layoutY="69.0" />
       <Label layoutX="57.0" layoutY="116.0" text="Password:" />
-      <Button layoutX="317.0" layoutY="164.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="242.0" layoutY="164.0" mnemonicParsing="false" text="Confirm" />
+      <Button fx:id="cancel" layoutX="317.0" layoutY="164.0" mnemonicParsing="false" text="Cancel" />
+      <Button fx:id="done" layoutX="242.0" layoutY="164.0" mnemonicParsing="false" text="Confirm" />
       <Text layoutX="57.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your login information to confirm action:" />
-      <Label layoutX="57.0" layoutY="169.0" text="Label" />
-      <PasswordField layoutX="149.0" layoutY="111.0" />
+      <Label fx:id="status" layoutX="57.0" layoutY="169.0" text="Label" />
+      <PasswordField fx:id="password" layoutX="149.0" layoutY="111.0" />
    </children>
 </AnchorPane>
