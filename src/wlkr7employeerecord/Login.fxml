@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="238.0" prefWidth="395.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wlkr7employeerecord.LoginController">
+    <stylesheets>
+        <URL value="@login.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="57.0" layoutY="74.0" text="Username:" />
+      <TextField layoutX="149.0" layoutY="69.0" />
+      <TextField layoutX="149.0" layoutY="111.0" />
+      <Label layoutX="57.0" layoutY="116.0" text="Password:" />
+      <Button layoutX="317.0" layoutY="164.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="242.0" layoutY="164.0" mnemonicParsing="false" text="Confirm" />
+      <Text layoutX="57.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your login information to confirm action:" />
+      <Label layoutX="57.0" layoutY="169.0" text="Label" />
+   </children>
+</AnchorPane>
