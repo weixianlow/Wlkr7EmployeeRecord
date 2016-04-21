@@ -6,6 +6,11 @@
 package wlkr7employeetype.newpackage;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -13,90 +18,128 @@ import java.text.SimpleDateFormat;
  */
 public abstract class Wlkr7BasicInfo {
     
-    private String firstName;
-    private String lastName;
-    private SimpleDateFormat birthdate;
-    private String address;
-    private String phoneNumber;
-    private SimpleDateFormat dateJoined;
-    private String employeeID;
+    private StringProperty firstName;
+    private StringProperty lastName;
+    private ObjectProperty<LocalDate> birthdate;
+    private StringProperty address;
+    private StringProperty phoneNumber;
+    private ObjectProperty<LocalDate> dateJoined;
+    private StringProperty employeeID;
     private Boolean morts;
     private Boolean doMundos;
     private Boolean infusion;
     private Boolean kateAndEmmas;
     private Boolean pomodoros;
-    private Boolean foodTraining;
-    private Boolean cashManagementTraining;
-    private Boolean healthCode;
+    private Boolean employee;
+    private Boolean supervisor;
+    private Boolean manager;
     
     
-    public Wlkr7BasicInfo(String firstName, String lastName, SimpleDateFormat birthdate, String address,String phoneNumber, SimpleDateFormat dateJoined, String employeeID)
+    public Wlkr7BasicInfo(){
+        this.firstName = new SimpleStringProperty(null);
+     this.lastName = new SimpleStringProperty(null);
+     this.birthdate = new SimpleObjectProperty<LocalDate>(null);
+     this.address = new SimpleStringProperty(null);
+     this.phoneNumber = new SimpleStringProperty(null);
+     this.dateJoined = new SimpleObjectProperty<LocalDate>(null);
+     this.employeeID = new SimpleStringProperty(null);
+     this.morts = false;
+     this.doMundos = false;
+     this.infusion = false;
+     this.kateAndEmmas = false;
+     this.pomodoros = false;
+     this.employee = true;
+     this.supervisor = false;
+     this.manager = false;
+        
+    }
+    public Wlkr7BasicInfo(String firstName, String lastName, LocalDate birthdate, String address,String phoneNumber, LocalDate dateJoined, String employeeID)
     {
-     this.firstName = firstName;
-     this.lastName = lastName;
-     this.birthdate = birthdate;
-     this.address = address;
-     this.phoneNumber = phoneNumber;
-     this.dateJoined = dateJoined;
-     this.employeeID = employeeID;
+     this.firstName = new SimpleStringProperty(firstName);
+     this.lastName = new SimpleStringProperty(lastName);
+     this.birthdate = new SimpleObjectProperty<LocalDate>(birthdate);
+     this.address = new SimpleStringProperty(address);
+     this.phoneNumber = new SimpleStringProperty(phoneNumber);
+     this.dateJoined = new SimpleObjectProperty<LocalDate>(dateJoined);
+     this.employeeID = new SimpleStringProperty(employeeID);
     }
-    
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-    
-    public String getFirstName(){
+    public StringProperty firstNameProperty(){
         return firstName;
     }
     
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
-    
-    public String getLastName(){
+    public StringProperty lastNameProperty(){
         return lastName;
     }
     
-    public void setBirthdate(SimpleDateFormat birthdate){
-        this.birthdate = birthdate;
+    public void setFirstName(String firstName){
+        this.firstName.set(firstName);
     }
     
-    public SimpleDateFormat getBirthdate(){
+    public String getFirstName(){
+        return firstName.get();
+    }
+    
+    public void setLastName(String lastName){
+        this.lastName.set(lastName);
+    }
+    
+    public String getLastName(){
+        return lastName.get();
+    }
+    public ObjectProperty<LocalDate> birthDateProperty(){
         return birthdate;
     }
-    
-    public void setAddress(String address){
-        this.address = address;
+    public void setBirthdate(LocalDate birthdate){
+        this.birthdate.set(birthdate);
     }
     
-    public String getAddress(){
+    public LocalDate getBirthdate(){
+        return birthdate.get();
+    }
+    
+    public StringProperty addressProperty(){
         return address;
     }
     
+    public void setAddress(String address){
+        this.address.set(address);
+    }
+    
+    public String getAddress(){
+        return address.get();
+    }
+    public StringProperty phoneNumberProperty(){
+        return phoneNumber;
+    }
     public void setPhonenumber(String phoneNumber){
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber.set(phoneNumber);
     }
     
     public String getPhonenumber(){
-        return phoneNumber;
+        return phoneNumber.get();
     }
-    
-    public void setDateJoined(SimpleDateFormat dateJoined){
-        this.dateJoined = dateJoined;
-    }
-    
-    public SimpleDateFormat getDateJoined()
-    {
+    public ObjectProperty<LocalDate> dateJoinedProperty(){
         return dateJoined;
     }
+    public void setDateJoined(LocalDate dateJoined){
+        this.dateJoined.set(dateJoined);
+    }
     
+    public LocalDate getDateJoined()
+    {
+        return dateJoined.get();
+    }
+    
+    public StringProperty employeeID(){
+        return employeeID;
+    }
     public void setEmployeeID(String employeeID){
-        this.employeeID = employeeID;
+        this.employeeID.set(employeeID);
     }
     
     public String getEmployeeID()
     {
-        return employeeID;
+        return employeeID.get();
     }
     
     public void setMorts(Boolean response)
@@ -145,39 +188,34 @@ public abstract class Wlkr7BasicInfo {
         kateAndEmmas = response;
     }
     
-    public Boolean getKateAndEmmas(Boolean response)
+    public Boolean getKateAndEmmas()
     {
         return kateAndEmmas;
     }
     
-    public void setFoodTraining(Boolean response)
-    {
-        foodTraining = response;
+    public void setEmployeeStatus(Boolean response){
+        this.employee = response;
     }
     
-    public Boolean getFoodTraining()
+    public Boolean getEmployeeStatus()
     {
-        return foodTraining;
+        return employee;
     }
     
-    public void setCashManagementTraining(Boolean response)
-    {
-        cashManagementTraining = response;
+    public void setSupervisorStatus(Boolean response){
+        this.supervisor = response;
     }
     
-    public Boolean getCashManagementTraining()
-    {
-        return cashManagementTraining;
+    public Boolean getSupervisorStatus(){
+        return supervisor;
     }
     
-    public void setHealthCode(Boolean response)
-    {
-        healthCode = response;
+    public void setManagerStatus(Boolean response){
+        this.manager = response;
     }
     
-    public Boolean getHealthCode()
-    {
-        return healthCode;
+    public Boolean getManagerStatus(){
+        return manager;
     }
     
     

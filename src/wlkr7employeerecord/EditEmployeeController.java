@@ -9,11 +9,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import wlkr7employeetype.newpackage.Wlkr7Employee;
 
 /**
  * FXML Controller class
@@ -32,7 +36,7 @@ public class EditEmployeeController implements Initializable {
     private TextField lastName = new TextField();
     
     @FXML
-    private DatePicker birthDate = new DatePicker();
+    private TextField birthDate = new TextField();
     
     @FXML
     private TextField employeeID = new TextField();
@@ -44,7 +48,7 @@ public class EditEmployeeController implements Initializable {
     private TextField phoneNumber = new TextField();
     
     @FXML
-    private DatePicker dateStarted = new DatePicker();
+    private TextField dateStarted = new TextField();
     
     @FXML
     private CheckBox foodSafetyTraining = new CheckBox();
@@ -62,28 +66,145 @@ public class EditEmployeeController implements Initializable {
     private Button done = new Button();
     
     @FXML
-    private CheckBox supervisorTraining = new CheckBox();
+    private CheckBox morts = new CheckBox();
     
     @FXML
-    private CheckBox crisisManagement = new CheckBox();
+    private CheckBox pomodoros = new CheckBox();
     
     @FXML
-    private CheckBox managerTraining = new CheckBox();
+    private CheckBox doMundos = new CheckBox();
     
     @FXML
-    private CheckBox crisisManagement2 = new CheckBox();
+    private CheckBox kateAndEmmas = new CheckBox();
     
     @FXML
-    private CheckBox safeDepositTraining = new CheckBox();
+    private CheckBox infusion = new CheckBox();
     
-    @FXML
-    private CheckBox schedulingTraining = new CheckBox();
+    
+    
+    private Stage dialogStage;
+    private Wlkr7Employee employee;
+    private boolean okBtnStatus = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
-        
-    }    
     
+    }   
+    
+    public void setStage(Stage dialogStage){
+            this.dialogStage = dialogStage;
+    }
+    
+    public void editEmployee(Wlkr7Employee employee){
+        this.employee = employee;
+        
+        if(employee.getFirstName() != null){
+        firstName.setText(employee.getFirstName());
+        }
+        lastName.setText(employee.getLastName());
+        birthDate.setText(DateHandleParsing.format(employee.getBirthdate()));
+        employeeID.setText(employee.getEmployeeID());
+        address.setText(employee.getAddress());
+        phoneNumber.setText(employee.getPhonenumber());
+        dateStarted.setText(DateHandleParsing.format(employee.getDateJoined()));
+        foodSafetyTraining.setSelected(employee.getFoodTraining());
+        cashManagementTraining.setSelected(employee.getCashManagementTraining());
+        healthCodeTraining.setSelected(employee.getFoodTraining());
+        morts.setSelected(employee.getMorts());
+        pomodoros.setSelected(employee.getPomodoros());
+        infusion.setSelected(employee.getInfusion());
+        kateAndEmmas.setSelected(employee.getKateAndEmmas());
+        doMundos.setSelected(employee.getDoMundos());
+        
+    }
+    
+    public boolean isOkClicked(){
+        return okBtnStatus;
+    }
+    
+    @FXML
+    private void handleOK(){
+        if(checkDataValid()){
+            employee.setFirstName(firstName.getText());
+            employee.setLastName(lastName.getText());
+            employee.setBirthdate(DateHandleParsing.parsing(birthDate.getText()));
+            employee.setEmployeeID(employeeID.getText());
+            employee.setAddress(address.getText());
+            employee.setPhonenumber(phoneNumber.getText());
+            employee.setDateJoined(DateHandleParsing.parsing(dateStarted.getText()));
+            employee.setFoodTraining(foodSafetyTraining.isSelected());
+            employee.setCashManagementTraining(cashManagementTraining.isSelected());
+            employee.setHealthCode(healthCodeTraining.isSelected());
+            employee.setMorts(morts.isSelected());
+            employee.setPomodoros(pomodoros.isSelected());
+            employee.setInfusion(infusion.isSelected());
+            employee.setKateAndEmmas(kateAndEmmas.isSelected());
+            employee.setDoMundos(doMundos.isSelected());
+            
+            okBtnStatus = true;
+            dialogStage.close();
+        }
+    }
+    
+    @FXML
+    private void handleClose(){
+        dialogStage.close();
+    }
+    
+    private boolean checkDataValid(){
+        String errorMessage = "";
+        
+        if(firstName.getText() == null || firstName.getText().length() == 0){
+            errorMessage += "Missing First Name!\n";
+        }
+        
+        if(lastName.getText() == null || lastName.getText().length() == 0){
+            errorMessage += "Missing Last Name!\n";
+        }
+        
+        if(birthDate.getText() == null || birthDate.getText().length() == 0){
+            errorMessage += "Missing Birth Date!\n";
+        }else{
+            if(!DateHandleParsing.validDate(birthDate.getText())){
+                errorMessage += "Invalid BirthDate Format, please use the following format: (dd.mm.yyy)/n";
+            }
+        }
+        
+        if(employeeID.getText() == null || employeeID.getText().length() == 0){
+            errorMessage += "Missing Employee ID! \n";
+        }
+        
+        if(address.getText() == null || address.getText().length() == 0){
+            errorMessage += "Missing Address!\n";
+        }
+        
+        if(phoneNumber.getText() == null || phoneNumber.getText().length() == 0)
+        {
+            errorMessage += "Missing Phone Number!\n";
+        }
+        
+        if(dateStarted.getText() == null || dateStarted.getText().length() == 0){
+            errorMessage += "Missing Date Started! \n";
+        }else{
+            if(!DateHandleParsing.validDate(dateStarted.getText()))
+            {
+                errorMessage += "Invalid Starting Date Format, please use the following format: (dd.mm.yyyy)\n";
+            }
+        }
+        
+        if(errorMessage.length() == 0)
+        {
+            return true;
+        }else{
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(dialogStage);
+            alert.setTitle("Invalid Fields Detected");
+            alert.setHeaderText("Please correct the following issues:");
+            alert.setContentText(errorMessage);
+            
+            alert.showAndWait();
+            
+            return false;
+        }
+    }
 }

@@ -27,19 +27,16 @@
       <TextField fx:id="phoneNumber" layoutX="404.0" layoutY="103.0" />
       <TextField fx:id="dateStarted" layoutX="404.0" layoutY="142.0" />
       <Label layoutX="35.0" layoutY="230.0" text="Training:" />
-      <Label layoutX="35.0" layoutY="258.0" text="Employee:" />
-      <Label layoutX="243.0" layoutY="258.0" text="Supervisor:" />
-      <Label layoutX="426.0" layoutY="258.0" text="Manager:" />
-      <CheckBox fx:id="foodSafetyTraining" layoutX="35.0" layoutY="282.0" mnemonicParsing="false" text="Food Training" />
-      <CheckBox fx:id="cashManagementTraining" layoutX="35.0" layoutY="308.0" mnemonicParsing="false" text="Cash Management" />
-      <CheckBox fx:id="healthCodeTraining" layoutX="35.0" layoutY="333.0" mnemonicParsing="false" text="Health Code Training" />
-      <CheckBox fx:id="supervisorTraining" layoutX="245.0" layoutY="282.0" mnemonicParsing="false" text="Supervisor Training" />
-      <CheckBox fx:id="crisisManagement" layoutX="245.0" layoutY="308.0" mnemonicParsing="false" text="Crisis Management" />
-      <CheckBox fx:id="managerTraining" layoutX="426.0" layoutY="282.0" mnemonicParsing="false" text="Manager Training" />
-      <CheckBox fx:id="crisisManagement2" layoutX="426.0" layoutY="308.0" mnemonicParsing="false" text="Crisis Management" />
-      <CheckBox fx:id="safeDepositTraining" layoutX="426.0" layoutY="333.0" mnemonicParsing="false" text="Safe Deposit Training" />
-      <CheckBox fx:id="schedulingTraining" layoutX="426.0" layoutY="357.0" mnemonicParsing="false" text="Scheduling Training" />
-      <Button fx:id="done" layoutX="401.0" layoutY="410.0" mnemonicParsing="false" text="Done" />
-      <Button fx:id="cancel" layoutX="463.0" layoutY="410.0" mnemonicParsing="false" text="Cancel" />
+      <CheckBox fx:id="foodSafetyTraining" layoutX="36.0" layoutY="256.0" mnemonicParsing="false" text="Food Training" />
+      <CheckBox fx:id="cashManagementTraining" layoutX="37.0" layoutY="282.0" mnemonicParsing="false" text="Cash Management" />
+      <CheckBox fx:id="healthCodeTraining" layoutX="37.0" layoutY="308.0" mnemonicParsing="false" text="Health Code Training" />
+      <Button fx:id="done" layoutX="401.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleOK" text="Done" />
+      <Button fx:id="cancel" layoutX="463.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleClose" text="Cancel" />
+      <Label layoutX="299.0" layoutY="230.0" text="Restaurant Worked:" />
+      <CheckBox fx:id="pomodoros" layoutX="305.0" layoutY="282.0" mnemonicParsing="false" text="Pomodoro" />
+      <CheckBox fx:id="doMundos" layoutX="305.0" layoutY="308.0" mnemonicParsing="false" text="Do Mundos" />
+      <CheckBox fx:id="morts" layoutX="305.0" layoutY="256.0" mnemonicParsing="false" text="Morts" />
+      <CheckBox fx:id="kateAndEmmas" layoutX="305.0" layoutY="333.0" mnemonicParsing="false" text="Kate &amp; Emma's" />
+      <CheckBox fx:id="infusion" layoutX="451.0" layoutY="256.0" mnemonicParsing="false" text="Infusion" />
    </children>
 </AnchorPane>

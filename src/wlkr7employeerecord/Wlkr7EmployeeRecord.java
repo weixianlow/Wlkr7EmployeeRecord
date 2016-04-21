@@ -5,41 +5,113 @@
  */
 package wlkr7employeerecord;
 
+import java.io.IOException;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+
 import javafx.stage.Stage;
+import wlkr7employeetype.newpackage.Wlkr7Employee;
 
 /**
  *
  * @author weixianlow
  */
+
+
+
 public class Wlkr7EmployeeRecord extends Application {
     
-    @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    
+    
+    private Stage primaryStage;
+    private AnchorPane rootLayout;
+    
+    private ObservableList<Wlkr7Employee> employeeData = FXCollections.observableArrayList();
+    
+    public Wlkr7EmployeeRecord(){
+    
+    
+    
     }
+    
+    public ObservableList<Wlkr7Employee> getPersonData(){
+        return employeeData;
+    }
+    
+    
+    
+    
+    
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Employee Record Manager");
+        
+        
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Wlkr7EmployeeRecord.class.getResource("MainPage.fxml"));
+            rootLayout = (AnchorPane) loader.load();
+            
+            Scene scene = new Scene(rootLayout);
+            
+            MainPageController controller = loader.getController();
+            controller.setMainApplication(this);
+            
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException ex) {
+            throw ex;
+        }
+        
+        
+        
+        
+        
+    }
+    
+    public Stage getPrimaryStage(){
+        return primaryStage;
+    }
+    
+    public boolean showEditDialog(Wlkr7Employee employee) throws Exception{
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Wlkr7EmployeeRecord.class.getResource("EditEmployee.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Employee");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            
+            EditEmployeeController controller = loader.getController();
+            controller.setStage(dialogStage);
+            controller.editEmployee(employee);
+            
+            dialogStage.showAndWait();
+            
+            return controller.isOkClicked();
+        }catch (IOException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+
+    
+    
 
     /**
      * @param args the command line arguments
