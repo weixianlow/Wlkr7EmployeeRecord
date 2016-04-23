@@ -14,18 +14,14 @@
    <children>
       <Label layoutX="35.0" layoutY="35.0" text="First Name:" />
       <Label layoutX="299.0" layoutY="35.0" text="Last Name:" />
-      <Label layoutX="35.0" layoutY="70.0" text="Birth Date:" />
       <Label layoutX="299.0" layoutY="70.0" text="Employee ID:" />
-      <Label layoutX="35.0" layoutY="99.0" text="Address:" />
+      <Label layoutX="35.0" layoutY="61.0" text="Address:" />
       <Label layoutX="300.0" layoutY="108.0" text="Phone Number:" />
-      <Label layoutX="301.0" layoutY="147.0" text="Date Joined:" />
       <TextField fx:id="firstName" layoutX="121.0" layoutY="30.0" />
       <TextField fx:id="lastName" layoutX="404.0" layoutY="30.0" />
-      <TextField fx:id="birthDate" layoutX="121.0" layoutY="65.0" />
       <TextField fx:id="employeeID" layoutX="404.0" layoutY="65.0" />
-      <TextArea fx:id="address" layoutX="121.0" layoutY="100.0" prefHeight="111.0" prefWidth="167.0" />
+      <TextArea fx:id="address" layoutX="121.0" layoutY="62.0" prefHeight="111.0" prefWidth="167.0" />
       <TextField fx:id="phoneNumber" layoutX="404.0" layoutY="103.0" />
-      <TextField fx:id="dateStarted" layoutX="404.0" layoutY="142.0" />
       <Label layoutX="35.0" layoutY="230.0" text="Training:" />
       <CheckBox fx:id="foodSafetyTraining" layoutX="36.0" layoutY="256.0" mnemonicParsing="false" text="Food Training" />
       <CheckBox fx:id="cashManagementTraining" layoutX="37.0" layoutY="282.0" mnemonicParsing="false" text="Cash Management" />

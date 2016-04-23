@@ -35,8 +35,7 @@ public class EditEmployeeController implements Initializable {
     @FXML
     private TextField lastName = new TextField();
     
-    @FXML
-    private TextField birthDate = new TextField();
+   
     
     @FXML
     private TextField employeeID = new TextField();
@@ -47,8 +46,7 @@ public class EditEmployeeController implements Initializable {
     @FXML
     private TextField phoneNumber = new TextField();
     
-    @FXML
-    private TextField dateStarted = new TextField();
+    
     
     @FXML
     private CheckBox foodSafetyTraining = new CheckBox();
@@ -102,11 +100,11 @@ public class EditEmployeeController implements Initializable {
         firstName.setText(employee.getFirstName());
         }
         lastName.setText(employee.getLastName());
-        birthDate.setText(DateHandleParsing.format(employee.getBirthdate()));
+        
         employeeID.setText(employee.getEmployeeID());
         address.setText(employee.getAddress());
         phoneNumber.setText(employee.getPhonenumber());
-        dateStarted.setText(DateHandleParsing.format(employee.getDateJoined()));
+        
         foodSafetyTraining.setSelected(employee.getFoodTraining());
         cashManagementTraining.setSelected(employee.getCashManagementTraining());
         healthCodeTraining.setSelected(employee.getFoodTraining());
@@ -127,11 +125,11 @@ public class EditEmployeeController implements Initializable {
         if(checkDataValid()){
             employee.setFirstName(firstName.getText());
             employee.setLastName(lastName.getText());
-            employee.setBirthdate(DateHandleParsing.parsing(birthDate.getText()));
+            
             employee.setEmployeeID(employeeID.getText());
             employee.setAddress(address.getText());
             employee.setPhonenumber(phoneNumber.getText());
-            employee.setDateJoined(DateHandleParsing.parsing(dateStarted.getText()));
+            
             employee.setFoodTraining(foodSafetyTraining.isSelected());
             employee.setCashManagementTraining(cashManagementTraining.isSelected());
             employee.setHealthCode(healthCodeTraining.isSelected());
@@ -162,13 +160,7 @@ public class EditEmployeeController implements Initializable {
             errorMessage += "Missing Last Name!\n";
         }
         
-        if(birthDate.getText() == null || birthDate.getText().length() == 0){
-            errorMessage += "Missing Birth Date!\n";
-        }else{
-            if(!DateHandleParsing.validDate(birthDate.getText())){
-                errorMessage += "Invalid BirthDate Format, please use the following format: (dd.mm.yyy)/n";
-            }
-        }
+        
         
         if(employeeID.getText() == null || employeeID.getText().length() == 0){
             errorMessage += "Missing Employee ID! \n";
@@ -183,14 +175,7 @@ public class EditEmployeeController implements Initializable {
             errorMessage += "Missing Phone Number!\n";
         }
         
-        if(dateStarted.getText() == null || dateStarted.getText().length() == 0){
-            errorMessage += "Missing Date Started! \n";
-        }else{
-            if(!DateHandleParsing.validDate(dateStarted.getText()))
-            {
-                errorMessage += "Invalid Starting Date Format, please use the following format: (dd.mm.yyyy)\n";
-            }
-        }
+        
         
         if(errorMessage.length() == 0)
         {

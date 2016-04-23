@@ -61,8 +61,7 @@ public class MainPageController implements Initializable {
     @FXML
     private Label lastName = new Label();
     
-    @FXML
-    private Label birthDate = new Label();
+    
     
     @FXML
     private Label address = new Label();
@@ -73,8 +72,7 @@ public class MainPageController implements Initializable {
     @FXML
     private Label employeeID = new Label();
     
-    @FXML
-    private Label dateJoined = new Label();
+    
     
     @FXML
     private Label infusions = new Label();
@@ -145,11 +143,11 @@ public class MainPageController implements Initializable {
         if(employee == null){
             firstName.setText("-");
             lastName.setText("-");
-            birthDate.setText("-");
+            
             address.setText("-");
             phoneNumber.setText("-");
             employeeID.setText("-");
-            dateJoined.setText("-");
+            
             infusions.setText("-");
             morts.setText("-");
             doMundos.setText("-");
@@ -163,11 +161,11 @@ public class MainPageController implements Initializable {
         
         firstName.setText(employee.getFirstName());
         lastName.setText(employee.getLastName());
-        birthDate.setText(DateHandleParsing.format(employee.getBirthdate()));
+        
         address.setText(employee.getAddress());
         phoneNumber.setText(employee.getPhonenumber());
         employeeID.setText(employee.getEmployeeID());
-        dateJoined.setText(DateHandleParsing.format(employee.getDateJoined()));
+        
         
         if(employee.getInfusion() != null){
         switch (employee.getInfusion().toString()) {

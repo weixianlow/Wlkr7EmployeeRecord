@@ -20,8 +20,8 @@ public class Wlkr7Employee extends Wlkr7BasicInfo implements Wlkr7Training{
     private Boolean cashManagementTraining;
     private Boolean healthCode;
     private Boolean foodTraining;
-    public Wlkr7Employee(String firstName, String lastName, LocalDate birthdate, String address, String phoneNumber, LocalDate dateJoined, String employeeID) {
-        super(firstName, lastName, birthdate, address, phoneNumber, dateJoined, employeeID);
+    public Wlkr7Employee(String firstName, String lastName, String address, String phoneNumber, String employeeID) {
+        super(firstName, lastName, address, phoneNumber, employeeID);
         super.changeToEmployeeStatus();
     }
     
@@ -66,10 +66,10 @@ public class Wlkr7Employee extends Wlkr7BasicInfo implements Wlkr7Training{
         JSONObject obj = new JSONObject();
         obj.put("firstName", super.getFirstName());
         obj.put("lastName", super.getLastName());
-        obj.put("birthDate", super.getBirthdate());
+        
         obj.put("address", super.getAddress());
         obj.put("phoneNumber", super.getPhonenumber());
-        obj.put("dateJoined", super.getDateJoined());
+        
         obj.put("employeeID", super.getEmployeeID());
         obj.put("morts", super.getMorts().toString());
         obj.put("doMundos", super.getDoMundos().toString());
@@ -115,10 +115,10 @@ public class Wlkr7Employee extends Wlkr7BasicInfo implements Wlkr7Training{
         super.setFirstName((String)jsonObj.get("firstName"));
         System.out.println(super.getFirstName());
         super.setLastName((String)jsonObj.get("lastName"));
-        super.setBirthdate(DateHandleParsing.parsing((String)jsonObj.get("birthDate")));
+        
         super.setAddress((String)jsonObj.get("address"));
         super.setPhonenumber((String)jsonObj.get("phoneNumber"));
-        super.setDateJoined(DateHandleParsing.parsing((String)jsonObj.get("dateJoined")));
+        
         super.setEmployeeID((String)jsonObj.get("employeeID"));
         
         buffer = (String)jsonObj.get("morts");

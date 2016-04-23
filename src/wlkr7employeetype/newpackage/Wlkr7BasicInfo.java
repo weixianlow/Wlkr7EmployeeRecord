@@ -20,10 +20,10 @@ public abstract class Wlkr7BasicInfo {
     
     private StringProperty firstName;
     private StringProperty lastName;
-    private ObjectProperty<LocalDate> birthdate;
+    
     private StringProperty address;
     private StringProperty phoneNumber;
-    private ObjectProperty<LocalDate> dateJoined;
+    
     private StringProperty employeeID;
     private Boolean morts;
     private Boolean doMundos;
@@ -38,10 +38,10 @@ public abstract class Wlkr7BasicInfo {
     public Wlkr7BasicInfo(){
         this.firstName = new SimpleStringProperty(null);
      this.lastName = new SimpleStringProperty(null);
-     this.birthdate = new SimpleObjectProperty<LocalDate>(null);
+     
      this.address = new SimpleStringProperty(null);
      this.phoneNumber = new SimpleStringProperty(null);
-     this.dateJoined = new SimpleObjectProperty<LocalDate>(null);
+     
      this.employeeID = new SimpleStringProperty(null);
      this.morts = false;
      this.doMundos = false;
@@ -53,14 +53,14 @@ public abstract class Wlkr7BasicInfo {
      this.manager = false;
         
     }
-    public Wlkr7BasicInfo(String firstName, String lastName, LocalDate birthdate, String address,String phoneNumber, LocalDate dateJoined, String employeeID)
+    public Wlkr7BasicInfo(String firstName, String lastName,  String address,String phoneNumber,  String employeeID)
     {
      this.firstName = new SimpleStringProperty(firstName);
      this.lastName = new SimpleStringProperty(lastName);
-     this.birthdate = new SimpleObjectProperty<LocalDate>(birthdate);
+     
      this.address = new SimpleStringProperty(address);
      this.phoneNumber = new SimpleStringProperty(phoneNumber);
-     this.dateJoined = new SimpleObjectProperty<LocalDate>(dateJoined);
+     
      this.employeeID = new SimpleStringProperty(employeeID);
     }
     public StringProperty firstNameProperty(){
@@ -86,16 +86,10 @@ public abstract class Wlkr7BasicInfo {
     public String getLastName(){
         return lastName.get();
     }
-    public ObjectProperty<LocalDate> birthDateProperty(){
-        return birthdate;
-    }
-    public void setBirthdate(LocalDate birthdate){
-        this.birthdate.set(birthdate);
-    }
     
-    public LocalDate getBirthdate(){
-        return birthdate.get();
-    }
+    
+    
+    
     
     public StringProperty addressProperty(){
         return address;
@@ -118,17 +112,7 @@ public abstract class Wlkr7BasicInfo {
     public String getPhonenumber(){
         return phoneNumber.get();
     }
-    public ObjectProperty<LocalDate> dateJoinedProperty(){
-        return dateJoined;
-    }
-    public void setDateJoined(LocalDate dateJoined){
-        this.dateJoined.set(dateJoined);
-    }
     
-    public LocalDate getDateJoined()
-    {
-        return dateJoined.get();
-    }
     
     public StringProperty employeeID(){
         return employeeID;
