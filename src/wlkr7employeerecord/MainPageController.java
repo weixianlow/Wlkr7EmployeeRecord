@@ -5,9 +5,17 @@
  */
 package wlkr7employeerecord;
 
+import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +26,14 @@ import javafx.scene.control.MenuItem;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.stage.FileChooser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 import wlkr7employeetype.newpackage.Wlkr7Employee;
 
 
@@ -453,7 +469,136 @@ public class MainPageController implements Initializable {
             }
         }
         
+        @FXML
+        public void handleSave(){
+            
+            
+            ObservableList<Wlkr7Employee> listToSave = mainApp.getPersonData();
+            
+            if(listToSave == null){
+                System.out.println("error at reading listToSave");
+                return;
+            }
+            
+            FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+            
+            JSONArray array = new JSONArray();
+            JSONObject jsonObj;
+            for(Wlkr7Employee e: listToSave){
+                jsonObj = e.toJsonString();
+                
+                array.add(jsonObj);
+            }
+            
+            
+            
+            
+            
+            if(file != null){
+                try{
+                    String jsonString = array.toJSONString();
+                    System.out.println(jsonString);
+                    PrintWriter out = new PrintWriter(file.getPath());
+                    out.print(jsonString);
+                    out.close();
+                }catch(IOException ioex){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Exception Dialog");
+                    alert.setHeaderText("Exception!");
+                    alert.setContentText("Error writting to: "+ "file.getPath()");
+
+                    // Create expandable Exception.
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    ioex.printStackTrace(pw);
+                    String exceptionText = sw.toString();
+
+                    Label label = new Label("The exception stacktrace was:");
+
+                    TextArea textArea = new TextArea(exceptionText);
+                    textArea.setEditable(false);
+                    textArea.setWrapText(true);
+
+                    textArea.setMaxWidth(Double.MAX_VALUE);
+                    textArea.setMaxHeight(Double.MAX_VALUE);
+                    GridPane.setVgrow(textArea, Priority.ALWAYS);
+                    GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+                    GridPane expContent = new GridPane();
+                    expContent.setMaxWidth(Double.MAX_VALUE);
+                    expContent.add(label, 0, 0);
+                    expContent.add(textArea, 0, 1);
+
+                    // Set expandable Exception into the dialog pane.
+                    alert.getDialogPane().setExpandableContent(expContent);
+
+                    alert.showAndWait();
+                }
+            }
+        }
         
+        
+        @FXML
+        public void handleOpen() throws IOException, Exception{
+            FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+            
+            String jsonString = new String();
+            if(file != null){
+                try{
+                    FileReader fileReader = new FileReader(file.getPath());
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+                    
+                    
+                    String inputLine;
+                    while((inputLine = bufferedReader.readLine())!= null){
+                        jsonString += inputLine;
+                    }
+                    bufferedReader.close();
+                }catch(IOException ioex){
+                    throw ioex;
+                }
+                
+                System.out.println(jsonString);
+                
+                JSONArray array;
+                try{
+                    array = parseJsonArray(jsonString);
+                }catch(Exception ex){
+                    throw ex;
+                }
+                
+                for(Object e: array){
+                    try{
+                        JSONObject employeeParsed = (JSONObject)e;
+                        Wlkr7Employee employee = new Wlkr7Employee();
+                        employee.initFromJsonString(employeeParsed.toJSONString());
+                        mainApp.getPersonData().add(employee);
+                    }catch(Exception ex){
+                        throw ex;
+                    }
+                }
+            }
+        }
+        
+        public JSONArray parseJsonArray(String jsonString) throws Exception{
+            JSONArray array;
+            JSONParser parser = new JSONParser();
+            try{
+                array = (JSONArray)parser.parse(jsonString);
+            }catch(Exception ex){
+                throw ex;
+            }
+            
+            if(array == null){
+                return null;
+            }else{
+                return array;
+            }
+            
+            
+        }
                 
         
         
