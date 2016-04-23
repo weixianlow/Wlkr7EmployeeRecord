@@ -6,6 +6,7 @@
 package wlkr7employeerecord;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -13,11 +14,14 @@ import javafx.collections.ObservableList;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import wlkr7employeetype.newpackage.Wlkr7Employee;
 
 /**
@@ -74,6 +78,26 @@ public class Wlkr7EmployeeRecord extends Application {
         }
         
         
+        
+        primaryStage.setOnCloseRequest((WindowEvent we) -> {
+            
+                
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Unsaved Data");
+                    alert.setHeaderText("Changes have not been saved.");
+                    alert.setContentText("Are you sure you want to continue?");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK){
+                        // ... user chose OK
+                        primaryStage.close();
+                    } else {
+                        // ... user chose CANCEL or closed the dialog
+                        we.consume();
+                    }
+                
+            
+        });
         
         
         

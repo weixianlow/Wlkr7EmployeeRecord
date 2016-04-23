@@ -13,14 +13,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URL;
+import java.util.Optional;
 
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 
@@ -30,6 +33,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
+import javafx.stage.WindowEvent;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -111,9 +115,13 @@ public class MainPageController implements Initializable {
     private MenuItem toManager;
     
     private Wlkr7EmployeeRecord mainApp;
+    
+    private Boolean edited = false;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
         
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
@@ -122,6 +130,9 @@ public class MainPageController implements Initializable {
         
         list.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> updateView(newValue));
+        
+                
+        
         
     }   
     
@@ -324,11 +335,13 @@ public class MainPageController implements Initializable {
     
         @FXML
         private void handleEditPerson() throws Exception{
+            
             Wlkr7Employee selectedEmployee = list.getSelectionModel().getSelectedItem();
             if(selectedEmployee != null){
                 boolean okBtnClick = mainApp.showEditDialog(selectedEmployee);
                 if(okBtnClick ){
                     updateView(selectedEmployee);
+                    edited = true;
                 }
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
@@ -343,10 +356,12 @@ public class MainPageController implements Initializable {
         
         @FXML
         private void handleNewPerson() throws Exception{
+            
             Wlkr7Employee employeeTemp = new Wlkr7Employee();
             boolean okBtnClick = mainApp.showEditDialog(employeeTemp);
                 if(okBtnClick ){
                     mainApp.getPersonData().add(employeeTemp);
+                    edited = true;
                     
                 }
         }
@@ -365,6 +380,7 @@ public class MainPageController implements Initializable {
             }else{
                 employee.changeToSupervisorStatus();
                 updateView(employee);
+                edited = true;
                 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.initOwner(mainApp.getPrimaryStage());
@@ -373,6 +389,7 @@ public class MainPageController implements Initializable {
                 alert.setContentText("Employee " + employee.getFirstName() + " has been promoted/demoted to Supervisor Status");
                 
                 alert.showAndWait();
+                
             }
         }
         
@@ -387,10 +404,11 @@ public class MainPageController implements Initializable {
                 alert.setContentText("You have not selected an employee at the list on the left, please select and employee to promote/demote. ");
                 
                 alert.showAndWait();
+                
             }else{
                 employee.changeToManagerStatus();
                 updateView(employee);
-                
+                edited = true;
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.initOwner(mainApp.getPrimaryStage());
                 alert.setTitle("Employee has been Promoted");
@@ -398,6 +416,7 @@ public class MainPageController implements Initializable {
                 alert.setContentText("Employee " + employee.getFirstName() + " has been promoted to Manager status");
                 
                 alert.showAndWait();
+                
             }
         }
         
@@ -417,7 +436,7 @@ public class MainPageController implements Initializable {
                 
                 employee.changeToEmployeeStatus();
                 updateView(employee);
-                
+                edited = true;
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.initOwner(mainApp.getPrimaryStage());
                 alert.setTitle("Employee has been Demoted");
@@ -447,7 +466,7 @@ public class MainPageController implements Initializable {
             {
                 list.getItems().remove(employee);
                 updateView(null);
-                
+                edited = true;
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.initOwner(mainApp.getPrimaryStage());
                 alert.setTitle("Deletion Complete");
@@ -500,6 +519,7 @@ public class MainPageController implements Initializable {
                     PrintWriter out = new PrintWriter(file.getPath());
                     out.print(jsonString);
                     out.close();
+                    edited = false;
                 }catch(IOException ioex){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Exception Dialog");
@@ -599,7 +619,32 @@ public class MainPageController implements Initializable {
         }
                 
         
+        @FXML
+        public void handleClose(){
+            if(edited == true){
+                if(!confirmContinueOnUnsavedData()){
+                    return;
+                }
+            }
+            
+            mainApp.getPrimaryStage().close();
+        }
         
+        private boolean confirmContinueOnUnsavedData(){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Unsaved Data");
+        alert.setHeaderText("Changes have not been saved.");
+        alert.setContentText("Are you sure you want to continue?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // ... user chose OK
+            return true;
+        } else {
+            // ... user chose CANCEL or closed the dialog
+            return false;
+        }
+        }
         
         
 }

@@ -19,7 +19,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#handleOpen" text="Open" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Save" />
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Manage">
