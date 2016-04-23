@@ -19,11 +19,11 @@ public class Wlkr7Employee extends Wlkr7BasicInfo implements Wlkr7Training{
     private Boolean foodTraining;
     public Wlkr7Employee(String firstName, String lastName, LocalDate birthdate, String address, String phoneNumber, LocalDate dateJoined, String employeeID) {
         super(firstName, lastName, birthdate, address, phoneNumber, dateJoined, employeeID);
-        super.setEmployeeStatus(true);
+        super.changeToEmployeeStatus();
     }
     
     public Wlkr7Employee(){
-        super.setEmployeeStatus(true);
+        super.changeToEmployeeStatus();
         cashManagementTraining = false;
         healthCode = false;
         foodTraining = false;

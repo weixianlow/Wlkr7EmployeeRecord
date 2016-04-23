@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -86,6 +87,15 @@ public class MainPageController implements Initializable {
     @FXML
     private Label employeeStatus = new Label();
     
+    @FXML
+    private MenuItem toEmployee;
+    
+    @FXML
+    private MenuItem toSupervisor;
+    
+    @FXML
+    private MenuItem toManager;
+    
     private Wlkr7EmployeeRecord mainApp;
      
     @Override
@@ -113,6 +123,8 @@ public class MainPageController implements Initializable {
     
     
     public void updateView(Wlkr7Employee employee){
+        
+        
         
         if(employee == null){
             firstName.setText("-");
@@ -273,12 +285,21 @@ public class MainPageController implements Initializable {
         if(employee.getEmployeeStatus().equals(true))
         {
             employeeStatus.setText("Employee");
+            toEmployee.setDisable(true);
+            toSupervisor.setDisable(false);
+            toManager.setDisable(false);
         }else if(employee.getSupervisorStatus().equals(true))
         {
             employeeStatus.setText("Supervisor");
+            toSupervisor.setDisable(true);
+            toEmployee.setDisable(false);
+            toManager.setDisable(false);
         }else if(employee.getManagerStatus().equals(true))
         {
             employeeStatus.setText("Manager");
+            toManager.setDisable(true);
+            toEmployee.setDisable(false);
+            toSupervisor.setDisable(false);
         }else{
             employeeStatus.setText("Not Defined");
         }
@@ -315,6 +336,126 @@ public class MainPageController implements Initializable {
                     
                 }
         }
+        
+        @FXML
+        private void handleToSupervisor(){
+            Wlkr7Employee employee = list.getSelectionModel().getSelectedItem();
+            if(employee == null){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("No Employee Selected");
+                alert.setHeaderText("No Employee has been selected.");
+                alert.setContentText("You have not selected an employee at the list on the left, please select and employee to promote/demote. ");
+                
+                alert.showAndWait();
+            }else{
+                employee.changeToSupervisorStatus();
+                updateView(employee);
+                
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Employee has been Promoted/Demoted");
+                alert.setHeaderText("Your request to promote/demote has been executed");
+                alert.setContentText("Employee " + employee.getFirstName() + " has been promoted/demoted to Supervisor Status");
+                
+                alert.showAndWait();
+            }
+        }
+        
+        @FXML
+        private void handleToManager(){
+            Wlkr7Employee employee = list.getSelectionModel().getSelectedItem();
+            if(employee == null){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("No Employee Selected");
+                alert.setHeaderText("No Employee has been selected.");
+                alert.setContentText("You have not selected an employee at the list on the left, please select and employee to promote/demote. ");
+                
+                alert.showAndWait();
+            }else{
+                employee.changeToManagerStatus();
+                updateView(employee);
+                
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Employee has been Promoted");
+                alert.setHeaderText("Your request to promote has been executed");
+                alert.setContentText("Employee " + employee.getFirstName() + " has been promoted to Manager status");
+                
+                alert.showAndWait();
+            }
+        }
+        
+        @FXML
+        private void handleToEmployee(){
+            Wlkr7Employee employee = list.getSelectionModel().getSelectedItem();
+            if(employee == null){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("No Employee Selected");
+                alert.setHeaderText("No Employee has been selected.");
+                alert.setContentText("You have not selected an employee at the list on the left, please select and employee to promote/demote. ");
+                
+                alert.showAndWait();
+            }else{
+                
+                
+                employee.changeToEmployeeStatus();
+                updateView(employee);
+                
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Employee has been Demoted");
+                alert.setHeaderText("Your request to demote has been executed");
+                alert.setContentText("Employee " + employee.getFirstName() + " has been demoted to Employee Status");
+                
+                alert.showAndWait();
+            }
+        }
+        
+        @FXML
+        private void handleAboutPage(){
+            Alert alert = new Alert(AlertType.INFORMATION);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("About");
+                alert.setHeaderText("Information about the program");
+                alert.setContentText("This application is created by Wei Xian Low (WLKR7), a student at the University of Missouri - Columbia for CS3330 Object Oriented Programing Class' final project");
+                
+                alert.showAndWait();
+        }
+        
+        @FXML
+        private void handleDeleteEmployee(){
+            int employee = list.getSelectionModel().getSelectedIndex();
+            
+            if(employee >= 0)
+            {
+                list.getItems().remove(employee);
+                updateView(null);
+                
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Deletion Complete");
+                alert.setHeaderText("Deletion has been executed");
+                alert.setContentText("The employee's record has been deleted from the application.");
+                
+                alert.showAndWait();
+                
+            }else{
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("No Employee Selected");
+                alert.setHeaderText("No Employee Selected Has Been Selected");
+                alert.setContentText("You have not selected an employee's record to be deleted, please select an employee and try again.");
+
+                alert.showAndWait();
+            }
+        }
+        
+        
+                
+        
         
         
         

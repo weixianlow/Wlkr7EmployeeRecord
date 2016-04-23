@@ -193,8 +193,10 @@ public abstract class Wlkr7BasicInfo {
         return kateAndEmmas;
     }
     
-    public void setEmployeeStatus(Boolean response){
-        this.employee = response;
+    public void changeToEmployeeStatus(){
+        employee = true;
+        supervisor = false;
+        manager = false;
     }
     
     public Boolean getEmployeeStatus()
@@ -202,16 +204,20 @@ public abstract class Wlkr7BasicInfo {
         return employee;
     }
     
-    public void setSupervisorStatus(Boolean response){
-        this.supervisor = response;
+    public void changeToSupervisorStatus(){
+        employee = false;
+        supervisor = true;
+        manager = false;
     }
     
     public Boolean getSupervisorStatus(){
         return supervisor;
     }
     
-    public void setManagerStatus(Boolean response){
-        this.manager = response;
+    public void changeToManagerStatus(){
+        employee = false;
+        supervisor = false;
+        manager = true;
     }
     
     public Boolean getManagerStatus(){

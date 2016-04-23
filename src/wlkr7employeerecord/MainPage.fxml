@@ -26,17 +26,19 @@
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#handleNewPerson" text="Add Employee" />
                   <MenuItem mnemonicParsing="false" onAction="#handleEditPerson" text="Edit Employee" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleDeleteEmployee" text="Delete Employee" />
               </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Promote">
+          <Menu mnemonicParsing="false" text="Promote/Demote">
             <items>
-              <MenuItem mnemonicParsing="false" text="To Supervisor" />
-                  <MenuItem mnemonicParsing="false" text="To Manager" />
+                  <MenuItem fx:id="toEmployee" mnemonicParsing="false" onAction="#handleToEmployee" text="To Employee" />
+              <MenuItem fx:id="toSupervisor" mnemonicParsing="false" onAction="#handleToSupervisor" text="To Supervisor" />
+                  <MenuItem fx:id="toManager" mnemonicParsing="false" onAction="#handleToManager" text="To Manager" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#handleAboutPage" text="About" />
             </items>
           </Menu>
         </menus>
