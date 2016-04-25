@@ -5,10 +5,7 @@
  */
 package wlkr7employeetype.newpackage;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -53,16 +50,7 @@ public abstract class Wlkr7BasicInfo {
      this.manager = false;
         
     }
-    public Wlkr7BasicInfo(String firstName, String lastName,  String address,String phoneNumber,  String employeeID)
-    {
-     this.firstName = new SimpleStringProperty(firstName);
-     this.lastName = new SimpleStringProperty(lastName);
-     
-     this.address = new SimpleStringProperty(address);
-     this.phoneNumber = new SimpleStringProperty(phoneNumber);
-     
-     this.employeeID = new SimpleStringProperty(employeeID);
-    }
+    
     public StringProperty firstNameProperty(){
         return firstName;
     }

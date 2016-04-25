@@ -7,6 +7,7 @@ package wlkr7employeerecord;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -121,7 +122,7 @@ public class EditEmployeeController implements Initializable {
     }
     
     @FXML
-    private void handleOK(){
+    private void handleOK(ActionEvent event){
         if(checkDataValid()){
             employee.setFirstName(firstName.getText());
             employee.setLastName(lastName.getText());
@@ -145,7 +146,7 @@ public class EditEmployeeController implements Initializable {
     }
     
     @FXML
-    private void handleClose(){
+    private void handleClose(ActionEvent event){
         dialogStage.close();
     }
     

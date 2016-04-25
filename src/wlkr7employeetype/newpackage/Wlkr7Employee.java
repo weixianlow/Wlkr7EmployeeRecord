@@ -5,11 +5,10 @@
  */
 package wlkr7employeetype.newpackage;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import wlkr7employeerecord.DateHandleParsing;
+
 
 /**
  *
@@ -20,10 +19,7 @@ public class Wlkr7Employee extends Wlkr7BasicInfo implements Wlkr7Training{
     private Boolean cashManagementTraining;
     private Boolean healthCode;
     private Boolean foodTraining;
-    public Wlkr7Employee(String firstName, String lastName, String address, String phoneNumber, String employeeID) {
-        super(firstName, lastName, address, phoneNumber, employeeID);
-        super.changeToEmployeeStatus();
-    }
+    
     
     public Wlkr7Employee(){
         super.changeToEmployeeStatus();

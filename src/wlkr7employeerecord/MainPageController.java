@@ -5,7 +5,7 @@
  */
 package wlkr7employeerecord;
 
-import java.awt.event.ActionEvent;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import javafx.fxml.FXML;
@@ -126,10 +127,16 @@ public class MainPageController implements Initializable {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
         
+        toEmployee.setDisable(true);
+        toSupervisor.setDisable(true);
+        toManager.setDisable(true);
+        
         updateView(null);
         
         list.getSelectionModel().selectedItemProperty().addListener(
             (observable, oldValue, newValue) -> updateView(newValue));
+        
+        
         
                 
         
@@ -334,7 +341,7 @@ public class MainPageController implements Initializable {
         }
     
         @FXML
-        private void handleEditPerson() throws Exception{
+        private void handleEditPerson(ActionEvent event) throws Exception{
             
             Wlkr7Employee selectedEmployee = list.getSelectionModel().getSelectedItem();
             if(selectedEmployee != null){
@@ -355,7 +362,7 @@ public class MainPageController implements Initializable {
         }
         
         @FXML
-        private void handleNewPerson() throws Exception{
+        private void handleNewPerson(ActionEvent event) throws Exception{
             
             Wlkr7Employee employeeTemp = new Wlkr7Employee();
             boolean okBtnClick = mainApp.showEditDialog(employeeTemp);
@@ -367,7 +374,7 @@ public class MainPageController implements Initializable {
         }
         
         @FXML
-        private void handleToSupervisor(){
+        private void handleToSupervisor(ActionEvent event){
             Wlkr7Employee employee = list.getSelectionModel().getSelectedItem();
             if(employee == null){
                 Alert alert = new Alert(AlertType.ERROR);
@@ -394,7 +401,7 @@ public class MainPageController implements Initializable {
         }
         
         @FXML
-        private void handleToManager(){
+        private void handleToManager(ActionEvent event){
             Wlkr7Employee employee = list.getSelectionModel().getSelectedItem();
             if(employee == null){
                 Alert alert = new Alert(AlertType.ERROR);
@@ -421,7 +428,7 @@ public class MainPageController implements Initializable {
         }
         
         @FXML
-        private void handleToEmployee(){
+        private void handleToEmployee(ActionEvent event){
             Wlkr7Employee employee = list.getSelectionModel().getSelectedItem();
             if(employee == null){
                 Alert alert = new Alert(AlertType.ERROR);
@@ -448,7 +455,7 @@ public class MainPageController implements Initializable {
         }
         
         @FXML
-        private void handleAboutPage(){
+        private void handleAboutPage(ActionEvent event){
             Alert alert = new Alert(AlertType.INFORMATION);
                 alert.initOwner(mainApp.getPrimaryStage());
                 alert.setTitle("About");
@@ -459,7 +466,7 @@ public class MainPageController implements Initializable {
         }
         
         @FXML
-        private void handleDeleteEmployee(){
+        private void handleDeleteEmployee(ActionEvent event){
             int employee = list.getSelectionModel().getSelectedIndex();
             
             if(employee >= 0)
@@ -487,7 +494,7 @@ public class MainPageController implements Initializable {
         }
         
         @FXML
-        public void handleSave(){
+        public void handleSave(ActionEvent event){
             
             
             ObservableList<Wlkr7Employee> listToSave = mainApp.getPersonData();
@@ -558,7 +565,7 @@ public class MainPageController implements Initializable {
         
         
         @FXML
-        public void handleOpen() throws IOException, Exception{
+        public void handleOpen(ActionEvent event) throws IOException, Exception{
             FileChooser fileChooser = new FileChooser();
             File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
             
@@ -575,7 +582,12 @@ public class MainPageController implements Initializable {
                     }
                     bufferedReader.close();
                 }catch(IOException ioex){
-                    throw ioex;
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Unable to Open File");
+                    alert.setHeaderText("File Unable to be opened");
+                    alert.setContentText("Sorry, the file you have selected may have been corrupted or invalid. Please try with a different file.");
+                    
+                    alert.showAndWait();
                 }
                 
                 System.out.println(jsonString);
@@ -620,7 +632,7 @@ public class MainPageController implements Initializable {
                 
         
         @FXML
-        public void handleClose(){
+        public void handleClose(ActionEvent event){
             if(edited == true){
                 if(!confirmContinueOnUnsavedData()){
                     return;
