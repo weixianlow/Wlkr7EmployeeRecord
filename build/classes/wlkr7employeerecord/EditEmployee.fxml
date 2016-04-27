@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="464.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wlkr7employeerecord.EditEmployeeController">
+    <stylesheets>
+        <URL value="@editemployee.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="35.0" layoutY="35.0" text="First Name:" />
+      <Label layoutX="299.0" layoutY="35.0" text="Last Name:" />
+      <Label layoutX="299.0" layoutY="70.0" text="Employee ID:" />
+      <Label layoutX="35.0" layoutY="61.0" text="Address:" />
+      <Label layoutX="300.0" layoutY="108.0" text="Phone Number:" />
+      <TextField fx:id="firstName" layoutX="121.0" layoutY="30.0" />
+      <TextField fx:id="lastName" layoutX="404.0" layoutY="30.0" />
+      <TextField fx:id="employeeID" layoutX="404.0" layoutY="65.0" />
+      <TextArea fx:id="address" layoutX="121.0" layoutY="62.0" prefHeight="111.0" prefWidth="167.0" />
+      <TextField fx:id="phoneNumber" layoutX="404.0" layoutY="103.0" />
+      <Label layoutX="35.0" layoutY="230.0" text="Training:" />
+      <CheckBox fx:id="foodSafetyTraining" layoutX="36.0" layoutY="256.0" mnemonicParsing="false" text="Food Training" />
+      <CheckBox fx:id="cashManagementTraining" layoutX="37.0" layoutY="282.0" mnemonicParsing="false" text="Cash Management" />
+      <CheckBox fx:id="healthCodeTraining" layoutX="37.0" layoutY="308.0" mnemonicParsing="false" text="Health Code Training" />
+      <Button fx:id="done" layoutX="401.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleOK" text="Done" />
+      <Button fx:id="cancel" layoutX="463.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleClose" text="Cancel" />
+      <Label layoutX="299.0" layoutY="230.0" text="Restaurant Worked:" />
+      <CheckBox fx:id="pomodoros" layoutX="305.0" layoutY="282.0" mnemonicParsing="false" text="Pomodoro" />
+      <CheckBox fx:id="doMundos" layoutX="305.0" layoutY="308.0" mnemonicParsing="false" text="Do Mundos" />
+      <CheckBox fx:id="morts" layoutX="305.0" layoutY="256.0" mnemonicParsing="false" text="Morts" />
+      <CheckBox fx:id="kateAndEmmas" layoutX="305.0" layoutY="333.0" mnemonicParsing="false" text="Kate &amp; Emma's" />
+      <CheckBox fx:id="infusion" layoutX="451.0" layoutY="256.0" mnemonicParsing="false" text="Infusion" />
+   </children>
+</AnchorPane>
